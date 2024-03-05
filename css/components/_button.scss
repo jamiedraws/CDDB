@@ -1,0 +1,75 @@
+$select: ".button" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+
+// components
+@use "../../Shared/css/template/shoppingcart/components/button";
+
+// utils
+@use "../../Shared/css/template/dtm/utils/scope";
+
+@mixin base {
+    @include scope.for-template {
+        @include button.new(white, #252525) {
+            transition: transform 0.25s ease-in-out, color 0.25s;
+            text-transform: uppercase;
+            font-family: fonts.get(cond);
+            font-weight: 700;
+            font-size: 1em;
+            font-style: italic;
+            border-radius: 0;
+            padding: 0.25em 1em;
+
+            &:focus,
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            &--can-scale {
+                font-size: 1em;
+            }
+
+            &--callout {
+                transform: skew(-8deg) rotate(-8deg);
+
+                &:focus,
+                &:hover {
+                    transform: skew(-8deg) rotate(-8deg) scale(1.1);
+                }
+            }
+
+            &--can-fill {
+                display: block;
+            }
+        }
+
+        @include button.name-color-map("color-extra", colors.get(extra), white);
+        @include button.name-color-map(
+            "color-accent",
+            colors.get(accent),
+            white
+        );
+
+        @include button.name-color-map(
+            "fourth",
+            colors.get(dark),
+            colors.get(primary)
+        );
+
+        @include button.name-color-map(
+            "fourth-invert",
+            colors.get(primary),
+            colors.get(dark)
+        );
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin express-checkout {
+    @include button.express-checkout;
+}

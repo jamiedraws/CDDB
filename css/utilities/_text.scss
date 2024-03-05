@@ -1,0 +1,54 @@
+$select: ".text" !default;
+
+@mixin wrap {
+    #{$select}--wrap {
+        > span {
+            display: block;
+        }
+
+        @content;
+    }
+}
+
+@mixin strike {
+    #{$select} {
+        text-decoration: line-through;
+        text-decoration-color: green;
+
+        @content;
+    }
+}
+
+@mixin angle {
+    #{$select}--angle {
+        transform: rotate(-6deg) skew(-6deg);
+
+        @content;
+    }
+}
+
+@mixin center {
+    #{$select}--center {
+        text-align: center;
+
+        @content;
+    }
+}
+
+@mixin shadow {
+    #{$select}--shadow {
+        text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
+
+        @content;
+    }
+}
+
+@mixin disclaimer {
+    #{$select}--disclaimer {
+        color: #757f84;
+        font-weight: 400;
+        font-size: 1.4em;
+
+        @content;
+    }
+}

@@ -1,0 +1,17 @@
+$select: ".playlist" !default;
+
+// config
+@use "../config/queries";
+
+
+@mixin base {
+    #{$select} {
+        display: flex;
+        position: relative;
+        z-index: 2;
+        > * {
+            margin: 0 0.25em;
+        }
+        @content;
+    }
+}

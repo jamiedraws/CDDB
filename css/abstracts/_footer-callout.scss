@@ -1,0 +1,16 @@
+$select: ".footer-callout" !default;
+
+// queries
+@use "../config/queries";
+
+@mixin base {
+    #{$select} {
+        position: sticky;
+        bottom: 0;
+        z-index: 1;
+
+        font-size: 1.5em;
+
+        @content;
+    }
+}

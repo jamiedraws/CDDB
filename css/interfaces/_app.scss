@@ -1,0 +1,68 @@
+@use "sass:math";
+
+// layouts
+@use "../layouts/document";
+@use "../layouts/content";
+@use "../layouts/header";
+@use "../layouts/nav";
+@use "../layouts/footer";
+@use "../layouts/slide";
+
+// components
+@use "../components/title";
+@use "../components/button";
+@use "../components/list";
+@use "../components/fp-nav";
+@use "../../Shared/css/template/shoppingcart/components/icons";
+@use "../../Shared/css/template/shoppingcart/components/skip-link";
+@use "../../Shared/css/template/base/components/toast";
+
+@use "../../Shared/css/template/dtm/components/modal" with
+    ($color: white, $background-color: rgba(0, 0, 0, 0.4));
+
+// media
+@use "../../Shared/css/template/base/media/load-item";
+@use "../../Shared/css/template/base/media/contain";
+
+// utils
+@use "../../Shared/css/template/dtm/utils/scope";
+@use "../utilities/hide";
+
+// for the critical rendering path
+@mixin critical {
+    @include list.base;
+    @include list.sitemap;
+    @include button.base;
+    @include skip-link.new;
+    @include icons.new;
+
+    @include document.base;
+    @include header.base;
+    @include nav.base;
+    @include content.base;
+    @include footer.base;
+    @include slide.base;
+
+    @include contain.new;
+    @include load-item.new($use-arp: false);
+
+    @include scope.for-template {
+        @include hide.new;
+    }
+
+    @include title.base;
+    @include title.rainbow;
+    @include title.sub;
+
+    @include toast.new;
+    @include toast.polite;
+
+    @include fp-nav.base;
+
+    @content;
+}
+
+// defer rendering at the base level
+@mixin defer {
+    @content;
+}

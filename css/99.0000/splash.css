@@ -1,0 +1,591 @@
+/* Cascading Stylesheet | Campaign Version
+
+@Layout
+
+* --------------------------------------------------------------------- */
+/* Canvas | @Layout */
+/* set the minimum width of our canvas */
+.dtm__in--dv .l-outer,
+.dtm__in--dv .l-header,
+.dtm__in--dv .l-footer {
+  min-width: 980px;
+}
+
+/* set the maximum width of our canvas */
+.dtm__in--dv .l-header__in,
+.dtm__in--dv .l-outer__in,
+.dtm__in--dv .l-footer__in {
+  max-width: 980px;
+}
+
+/* set the minimum height of our footer */
+.dtm__in--dv .l-footer {
+  min-height: 120px;
+}
+
+/* set the padding of the canvas */
+.dtm__in--dv .l-outer__in {
+  padding: 0.25em;
+}
+
+/* set the border style of our header & midline sections */
+.dtm__in--dv .l-header,
+.dtm__in--dv .o-box--banner {
+  border-style: solid;
+}
+
+/* set the border width of our header section */
+.dtm__in--dv .l-header {
+  border-width: 0 0 3px;
+}
+
+/* set the border width of our midline section */
+.dtm__in--dv .o-box--banner {
+  border-width: 3px 0;
+}
+
+/* Page | @Layout */
+/* set the size of our desktop video */
+.dtm__in--dv .video {
+  width: 307px;
+  margin: 0 auto 1rem;
+}
+
+/* set the positioning and spacing of features & benefits for both desktop & mobile */
+.dtm .fb {
+  margin: 1rem auto;
+}
+
+/* include left & right margin to allocate offset margin from the ribbon on mobile */
+.dtm__in--mv .fb--classic {
+  margin: 1rem;
+}
+
+/* set the size of our desktop features & benefits area */
+.dtm__in--dv .fb {
+  width: 285px;
+}
+
+/* allow features & benefits to be responsive on mobile */
+.dtm__in--mv .fb {
+  max-width: none;
+  width: auto;
+}
+
+/* allow A.R.P. to work with a transparent background */
+.dtm [style^="--aspect-ratio"] {
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------- *
+
+@Theme
+
+* --------------------------------------------------------------------- */
+/*	Font Size
+    @Desc: Set up our font sizes
+* --------------------------------------------------------------------- */
+h1, .h1 {
+  font-size: 75px;
+}
+
+h2, .h2 {
+  font-size: 50px;
+}
+
+h3, .h3 {
+  font-size: 35px;
+}
+
+h4, .h4 {
+  font-size: 30px;
+}
+
+h5, .h5 {
+  font-size: 25px;
+}
+
+h6, .h6 {
+  font-size: 20px;
+}
+
+body, .p {
+  font-size: 16px;
+}
+
+/*	@Font Family
+    @Desc: Set up our font families
+* --------------------------------------------------------------------- */
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.sans-primary-book {
+  font-family: "Gotham Book", sans-serif;
+}
+
+.sans-primary-medium {
+  font-family: "Gotham Medium", sans-serif;
+}
+
+.sans-primary-bold {
+  font-family: "Gotham Bold", sans-serif;
+}
+
+.sans-primary-ultra {
+  font-family: "Gotham Ultra", sans-serif;
+}
+
+/*	@Color
+    @Desc: Set up our font color palette
+    * --------------------------------------------------------------------- */
+.color-primary {
+  color: #650DA2;
+}
+
+.color-secondary {
+  color: #650DA2;
+}
+
+.color-tertiary {
+  color: #650DA2;
+}
+
+/*	@Background
+    @Desc: Set up our background color palette
+    * --------------------------------------------------------------------- */
+.bg-primary {
+  background: #650DA2;
+}
+
+.bg-secondary {
+  background: #650DA2;
+}
+
+.bg-tertiary {
+  background: #650DA2;
+}
+
+/* set the desktop color of our white-space background */
+.dtm__in--dv {
+  background: black;
+}
+
+/* set the color of our canvas background */
+.l-outer__in {
+  background: white;
+}
+
+/* set the desktop color of our header, midline & footer */
+.dtm__in--dv .l-header,
+.dtm__in--dv .l-footer,
+.dtm__in--dv .o-box--banner {
+  background: #fafafa;
+  color: #8A8C8E;
+}
+
+/* set the desktop color of the header & midline border color */
+.dtm__in--dv .l-header,
+.dtm__in--dv .o-box--banner {
+  border-color: #8A8C8E;
+}
+
+/* set the color of our form headline (defaults to #333) */
+.c-brand--form .c-brand--form__legend {
+  background: #111111;
+}
+
+/* set the color of our order review table (defaults to red) */
+.c-brand--table th,
+.c-brand--table__th {
+  background: #EDC936;
+}
+
+/* set the color of our mobile order now button */
+.dtm .order-button {
+  background: #f58223;
+}
+
+/* set the color of our mobile nav button */
+.dtm .nav-button {
+  background: #f58223;
+}
+
+/* set the color of our mobile view-full-site button */
+.dtm .vfs {
+  background: #333;
+}
+
+/*	@Graphics
+    * --------------------------------------------------------------------- */
+/* set our desktop background image */
+/* Payment graphics for desktop */
+.dtm__in--dv .payment {
+  /* can control the size of the graphics */
+  font-size: 1rem;
+}
+
+/* Payment graphics for mobile */
+/* these rules make sure the payment graphics are bound to the offer image */
+.dtm__in--mv .offer-area {
+  position: relative;
+  display: block;
+}
+
+/* overlay the payment graphics over the offer image */
+.dtm__in--mv .offer-area .payment {
+  position: absolute;
+}
+
+@media all and (max-width: 640px) {
+  /* overlay the payment graphics over the offer image */
+  .dtm__in--mv .offer-area .payment {
+    /* can control the position of the graphics | can also use left & top as well if necessary */
+    right: 1vw;
+    bottom: 5vw;
+    /* can control the container of the graphics */
+    width: 45vw;
+    /* can control the size of the graphics */
+    font-size: 1.5vw;
+  }
+}
+/* for screens larger than 640px width */
+@media all and (min-width: 641px) {
+  .dtm__in--mv .offer-area .payment {
+    /* can control the position of the graphics | can also use left & top as well if necessary */
+    right: 5.5rem;
+    bottom: 4rem;
+    /* can control the container of the graphics */
+    width: 19rem;
+    /* can control the size of the graphics */
+    font-size: 1rem;
+  }
+}
+/*	@Features & Benefits
+    @Desc: thematize the features & benefits
+    * --------------------------------------------------------------------- */
+/* set the text color and size of the headline */
+.fb__headline {
+  color: white;
+  font: 20px/1 "Gotham Ultra", sans-serif;
+  text-transform: uppercase;
+}
+
+/* set the color of our banner and folds */
+.fb__banner {
+  background: #7fc027;
+  border-color: #568616;
+}
+
+/* set the color & size of our list */
+.fb__list {
+  background: white;
+  border-color: white;
+  font-size: 16px;
+  list-style: none;
+}
+
+/* set the size of the features box */
+.fb .fb__list {
+  left: 0;
+}
+
+/* set the color of our bullets */
+.fb__list li:before {
+  background: #e81e00;
+}
+
+.contain {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  min-height: 1px;
+  min-width: 1px;
+  overflow: hidden;
+}
+.contain::before, .contain::after {
+  content: "";
+}
+.contain::before {
+  display: block;
+}
+.contain::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  z-index: -1;
+}
+.contain > img, .contain > iframe, .contain > noscript, .contain > svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+.contain__item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+.contain--logo {
+  max-width: 243px;
+}
+.contain--logo::before {
+  padding-bottom: calc(100% / (3.9193548387));
+}
+.contain--video {
+  background: #252525;
+}
+.contain--video::before {
+  padding-bottom: calc(100% / (1.7777777778));
+}
+.contain--girls {
+  max-width: 491px;
+}
+.contain--girls::before {
+  padding-bottom: calc(100% / (1.0697167756));
+}
+.contain--product {
+  max-width: 131px;
+}
+.contain--product::before {
+  padding-bottom: calc(100% / (0.3004587156));
+}
+.contain--tagline {
+  max-width: 368px;
+}
+.contain--tagline::before {
+  padding-bottom: calc(100% / (2.1149425287));
+}
+.contain--item {
+  max-width: 110px;
+}
+.contain--item::before {
+  padding-bottom: calc(100% / (0.3405572755));
+}
+
+.header {
+  padding: 1.5rem 0;
+  color: white;
+}
+.header__in {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.header__logo {
+  flex: 0 1 243px;
+}
+.header__group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headline {
+  padding: 0 1em 0 0.5em;
+  font-family: futura-pt, sans-serif;
+  font-weight: 800;
+  font-size: 63px;
+}
+.headline small {
+  display: block;
+  font-family: "Avenir Next Demi Bold", sans-serif;
+  font-weight: 600;
+  font-size: 23px;
+  font-size: clamp(12px, 0.4em, 23px);
+  margin-top: 0.3em;
+}
+
+.dtm__in--mv .headline {
+  font-size: 1.6rem;
+}
+
+.dtm {
+  background: #e0a0c1;
+  background: linear-gradient(90deg, #e0a0c1 0%, #937ef3 30%, #937ef3 75%, #90fcfd 100%);
+}
+
+.dtm__in--dv,
+.dtm__in--mv {
+  background: none;
+}
+
+.dtm--index #content_top {
+  background: none;
+}
+
+#content_top {
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.btn {
+  font: normal 2.5rem/1 futura-pt-bold, sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #703dbf;
+  background: white;
+  border: none;
+  padding: 0.75em;
+  display: inline-block;
+  margin: 0.5em auto;
+  transition: background 0.25s, color 0.25s;
+}
+.btn:focus, .btn:hover {
+  background: #703dbf;
+  color: white;
+}
+
+#AcceptOfferButton {
+  background: #016471;
+  color: white;
+  font: 2rem/1 futura-pt-bold, sans-serif;
+  text-indent: 0px;
+  text-transform: uppercase;
+  padding: 0.75em 2em;
+  transition: background 0.25s;
+}
+#AcceptOfferButton:hover, #AcceptOfferButton:focus {
+  background: #000;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  color: white;
+}
+.hero__offer {
+  flex: 1 1 auto;
+  z-index: 3;
+}
+.hero__image {
+  flex: 0 1 491px;
+  margin-bottom: -4px;
+}
+
+@media all and (min-width: 980px) {
+  .hero__offer {
+    padding-bottom: 20px;
+    margin-right: -20px;
+  }
+  .hero__tagline {
+    position: absolute;
+  }
+  .hero__image {
+    margin-right: 30px;
+  }
+}
+.offer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer__text {
+  font-family: futura-pt-bold, sans-serif;
+  text-align: center;
+}
+.offer__price {
+  margin: -3.9em 0 1em 0;
+  font-size: 3rem;
+}
+.offer__price strong {
+  display: block;
+  font-weight: normal;
+  font-size: 2em;
+}
+
+@media all and (max-width: 980px) {
+  .header__logo {
+    flex: 0 1 7em;
+  }
+
+  .hero {
+    flex-wrap: wrap;
+  }
+  .hero__item {
+    flex: 0 1 100%;
+  }
+
+  .offer__price {
+    font-size: 2.4rem;
+  }
+
+  .btn {
+    font-size: 2.4rem;
+  }
+
+  .contain--tagline {
+    min-width: 12em;
+  }
+}
+.c-brand--form .c-brand--form__legend {
+  background: #a173e7;
+}
+
+.dtm__in--dv .l-footer {
+  background: #a173e7;
+  color: white;
+  border: none;
+}
+
+.bg--teal {
+  background: #016471;
+}
+.bg--violet {
+  background: #a173e7;
+}
+.bg--rose {
+  background: #efa9be;
+}
+.bg--glitter {
+  background: url(/images/bg-glitter.jpg);
+  background-size: 100% auto;
+}
+
+.option {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font: 1.2rem/1.2 "Avenir Next Demi Bold", sans-serif;
+}
+.option strong {
+  font-style: italic;
+  font-weight: bold;
+  font-family: futura-pt-condensed, sans-serif;
+  font-size: 1.8em;
+  display: block;
+}
+.option figure {
+  margin: 0;
+}
+.option figure picture {
+  margin: 1em auto;
+}
+
+@media all and (min-width: 980px) {
+  .option__item {
+    flex: 0 1 25%;
+  }
+}
+@media all and (max-width: 980px) {
+  .option__item {
+    flex: 1 1 14em;
+  }
+
+  .btn--cart {
+    font-size: 1.6em;
+  }
+}
+
+/*# sourceMappingURL=splash.css.map */

@@ -1,0 +1,312 @@
+@use "sass:math";
+
+$select: ".form" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// layouts
+@use "../../Shared/css/template/base/layouts/form";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/copy";
+
+// themes
+@use "../../Shared/css/template/base/themes/background";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    @include form.new;
+
+    @include form.fieldset;
+    @include form.field-label;
+    @include form.select;
+    @include form.checkbox(
+        $size: 2rem,
+        // $border-radius: 100%,
+        // $icon-color: white,
+        // $background-color: #7ac142
+    ) {
+        // &__checkbox {
+        //     border-color: #267706;
+        //     border-width: 0.1rem;
+        //     background-color: #eef0ed;
+        //     font-size: 0.75rem;
+        // }
+    }
+
+    #{contain.$select} {
+        &--mbg {
+            @include contain.ratio(math.div(1, 1));
+            max-width: queries.rem(100);
+        }
+    }
+
+    #{$select} {
+        z-index: 1;
+
+        @media all and (max-width: queries.get(mobile)) {
+            &--container {
+                overflow: hidden;
+            }
+        }
+
+        &__in {
+            padding-bottom: 3em;
+        }
+
+        &__title {
+            flex: 1 1 100%;
+            font-size: 1.25em;
+            font-weight: 600;
+            text-align: left;
+
+            padding: 0.5em;
+
+            @include background.color-map(
+                colors.get(accent),
+                colors.get(light)
+            );
+        }
+
+        &__group {
+            @include group.contain;
+            @include group.flexchild(1 1 13em);
+        }
+
+        &__payment-icons {
+            justify-content: flex-start;
+
+            > img {
+                max-width: 37px;
+            }
+        }
+
+        &__mbg {
+            margin: auto;
+        }
+
+        &__message {
+            text-align: center;
+        }
+
+        &__group-section {
+            @include group.contain(1em);
+            @include group.flexchild(1 1 23em);
+        }
+
+        &__group,
+        &__group-section {
+            overflow: visible;
+        }
+
+        &__span-item {
+            flex: 1 1 100%;
+        }
+
+        &__fieldset {
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__item-input-label {
+            flex: 0 1 auto;
+        }
+
+        &__checkbox-label &__checkbox {
+            font-size: 1.6rem;
+        }
+
+        &__field-label {
+            font-size: 1em;
+        }
+
+        &__field-label label,
+        &__field {
+            font-size: inherit;
+        }
+
+        &__field {
+            padding: 0.5em;
+        }
+
+        &__cvv {
+            align-items: center;
+        }
+
+        &__cvv &__field {
+            flex-basis: 15rem;
+        }
+
+        &__cvv &__link {
+            font-size: 1em;
+        }
+
+        &__copy {
+            @include copy.separate(2em);
+        }
+
+        &__action {
+            margin-top: 2em;
+        }
+
+        &__action-text {
+            text-align: center;
+        }
+
+        &--select {
+            font-size: 1.6rem;
+            font-weight: normal;
+
+            svg {
+                transform: none;
+                fill: #847c77;
+            }
+        }
+
+        &--select &__button {
+            width: 3em;
+        }
+
+        &__submit {
+            font-size: 2em;
+
+            > svg {
+                width: 7em;
+                height: 3em;
+            }
+
+            > span {
+                display: none;
+            }
+
+            &:not([data-state="card"]) {
+                > svg {
+                    display: none;
+                }
+            }
+
+            &[data-state="card"] {
+                > img {
+                    display: none;
+                }
+            }
+        }
+
+        &__info-accordion {
+            > :first-child {
+                margin-bottom: 2rem;
+            }
+        }
+
+        label[for="zc"] {
+            align-items: flex-start;
+
+            > input {
+                margin-top: 0.5em;
+            }
+        }
+
+        &__field-label-button {
+            @include group.contain;
+            align-items: center;
+            overflow: visible;
+
+            max-width: 40em;
+            margin: auto;
+
+            input {
+                flex: 1 1 10em;
+            }
+
+            button {
+                flex-basis: 12em;
+                align-self: stretch;
+            }
+
+            [role="alert"] {
+                flex-basis: 100%;
+                text-align: center;
+            }
+
+            @media all and (max-width: queries.get(mobile)) {
+                label,
+                button {
+                    flex-basis: 100%;
+                }
+            }
+        }
+
+        @content;
+    }
+
+    @include checkbox-label-stack;
+    @include frame;
+}
+
+@mixin frame {
+    #{$select} {
+        &--frame {
+            outline: 1px solid;
+
+            #{$select} {
+                &__fieldset {
+                    @include group.gutter(0);
+                }
+
+                &__frame {
+                    padding: 1em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin checkbox-label-stack {
+    #{$select} {
+        &--checkbox-label-stack {
+            #{$select} {
+                &__checkbox-label {
+                    flex-direction: column;
+                    align-items: center;
+                    @include copy.separate;
+                }
+
+                &__checkbox {
+                    margin-left: 1rem;
+                }
+
+                &__label {
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin lead {
+    #{$select} {
+        &--lead {
+            #{$select} {
+                &__title {
+                    text-align: center;
+                }
+
+                &__desc {
+                    flex-basis: 100%;
+                    text-align: center;
+                }
+            }
+
+            @content;
+        }
+    }
+}

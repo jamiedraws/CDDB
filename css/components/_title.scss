@@ -1,0 +1,49 @@
+$select: ".title" !default;
+
+// config
+@use "../config/colors";
+@use "../config/fonts";
+@use "../config/queries";
+
+@mixin base {
+    #{$select} {
+        font-family: fonts.get(cond);
+        font-size: 6.3em;
+        font-weight: 800;
+        font-style: italic;
+        line-height: 0.9;
+        margin: 0.4em 0 0;
+        text-transform: uppercase;
+
+        @content;
+    }
+}
+
+@mixin rainbow {
+    #{$select}--rainbow {
+        color: colors.product(violet);
+        background: -webkit-linear-gradient(
+            8deg,
+            #f296b7 28%,
+            #e7e8e8 38%,
+            #89dee6 52%,
+            #5a90f5 70%,
+            #9c74e8 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 0px #00000000;
+
+        @content;
+    }
+}
+
+@mixin sub {
+    #{$select}-sub {
+        margin: 0.5em 0;
+        font-family: fonts.get(main);
+        font-weight: 600;
+        font-size: 2.45em;
+        line-height: 1.2;
+    }
+}

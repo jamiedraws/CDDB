@@ -1,0 +1,252 @@
+@use "sass:map";
+@use "sass:math";
+
+$select: ".slide" !default;
+
+// config
+@use "../config/colors";
+@use "../config/queries";
+
+// layouts
+@use "../../Shared/css/template/shoppingcart/layouts/slide" with
+    ($desktop: queries.get(mobile));
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    @include slide.new;
+
+    #{$select} {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+
+        &__into {
+            margin: auto;
+        }
+
+        &__prev {
+            transform: rotate(0.5turn);
+        }
+
+        &__next {
+            transform: rotate(1turn);
+        }
+
+        &__nav {
+            height: 9em;
+
+            &--persist {
+                position: absolute;
+                margin: auto;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            button {
+                font-size: 5em;
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin before-after {
+    #{$select} {
+        &--before-after {
+            color: colors.product(stardust);
+
+            #{$select} {
+                &__into {
+                    max-width: 75%;
+                }
+
+                &__item {
+                    max-width: 100%;
+                }
+
+                @media all and (min-width: queries.get(mobile)) {
+                    &__into {
+                        max-width: 85%;
+                    }
+
+                    &__item {
+                        max-width: calc(100% / 3);
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin product-color {
+    @include slide.fade($select);
+
+    #{contain.$select} {
+        &--product-default {
+            @include contain.ratio(math.div(46, 176));
+            width: 3em;
+        }
+
+        &--product-color {
+            @include contain.ratio(math.div(265, 630));
+            width: 5em;
+        }
+    }
+
+    #{$select} {
+        &--product-color {
+            max-width: none;
+            flex: 1 1 100%;
+            border: 4px solid #cccccc;
+
+            #{$select} {
+                &__item {
+                    justify-content: center;
+                    padding: 1em 0;
+
+                    &[data-product-name="deep-teal"] {
+                        background: colors.product(teal);
+                    }
+
+                    &[data-product-name="wild-violet"] {
+                        background: colors.product(violet);
+                    }
+
+                    &[data-product-name="rose-quartz"] {
+                        background: colors.product(rose);
+                    }
+
+                    &[data-product-name="stardust-shimmer"] {
+                        background: url(/images/bg-glitter--big.jpg) center
+                            center no-repeat colors.product(stardust);
+                        background-size: cover;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin testimonial {
+    #{$select} {
+        &--testimonial {
+            #{$select} {
+                @media all and (min-width: queries.get(mobile)) {
+                    &__into {
+                        max-width: 72%;
+                    }
+                }
+
+                @media all and (max-width: queries.get(mobile)) {
+                    &__nav {
+                        justify-content: space-around;
+                        width: 100%;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin instagram {
+    #{$select} {
+        &--instagram {
+            color: white;
+
+            max-width: 80%;
+
+            @media all and (min-width: queries.get(mobile)) {
+                max-width: 100%;
+            }
+
+            #{$select} {
+                &__item {
+                    max-width: 100%;
+                }
+
+                @media all and (min-width: queries.get(mobile)) {
+                    &__into {
+                        @include group.gutter(0.5em);
+                    }
+
+                    &__item {
+                        max-width: 50%;
+                    }
+
+                    &__nav {
+                        max-width: 95%;
+                    }
+                }
+
+                @media all and (min-width: queries.set(1000)) {
+                    &__item {
+                        max-width: calc(100% / 3);
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin influencer {
+    #{$select} {
+        &--influencer {
+            color: white;
+
+            max-width: 80%;
+
+            @media all and (min-width: queries.get(mobile)) {
+                max-width: 100%;
+            }
+
+            #{$select} {
+                &__item {
+                    picture,
+                    [data-src-iframe] {
+                        margin: 0.5em;
+                    }
+                }
+
+                @media all and (min-width: 400px) {
+                    &__item {
+                        max-width: calc(100% / 2);
+                    }
+                }
+
+                @media all and (min-width: queries.get(mobile)) {
+                    &__item {
+                        max-width: calc(100% / 4);
+                    }
+
+                    &__nav {
+                        max-width: 95%;
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+
+            @content;
+        }
+    }
+}

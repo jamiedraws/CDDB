@@ -1,0 +1,311 @@
+/* Cascading Stylesheet | Campaign Version
+
+@Layout
+
+* --------------------------------------------------------------------- */
+/* Canvas | @Layout */
+/* set the minimum width of our canvas */
+.dtm__in--dv .l-outer,
+.dtm__in--dv .l-header,
+.dtm__in--dv .l-footer {
+    min-width: 980px;
+}
+
+/* set the maximum width of our canvas */
+.dtm__in--dv .l-header__in,
+.dtm__in--dv .l-outer__in,
+.dtm__in--dv .l-footer__in {
+    max-width: 980px;
+}
+
+/* set the minimum height of our footer */
+.dtm__in--dv .l-footer {
+    min-height: 120px;
+}
+
+/* set the padding of the canvas */
+.dtm__in--dv .l-outer__in {
+    padding: 0.25em;
+}
+
+/* set the border style of our header & midline sections */
+.dtm__in--dv .l-header,
+.dtm__in--dv .o-box--banner {
+    border-style: solid;
+}
+
+/* set the border width of our header section */
+.dtm__in--dv .l-header {
+    border-width: 0 0 3px;
+}
+
+/* set the border width of our midline section */
+.dtm__in--dv .o-box--banner {
+    border-width: 3px 0;
+}
+
+
+/* Page | @Layout */
+/* set the size of our desktop video */
+.dtm__in--dv .video {
+    width: 307px;
+    margin: 0 auto 1rem;
+}
+
+/* set the positioning and spacing of features & benefits for both desktop & mobile */
+.dtm .fb {
+    margin: 1rem auto;
+}
+
+/* include left & right margin to allocate offset margin from the ribbon on mobile */
+.dtm__in--mv .fb--classic {
+    margin: 1rem;
+}
+
+/* set the size of our desktop features & benefits area */
+.dtm__in--dv .fb {
+    width: 285px;
+}
+
+/* allow features & benefits to be responsive on mobile */
+.dtm__in--mv .fb {
+    max-width: none;
+    width: auto;
+}
+
+/* allow A.R.P. to work with a transparent background */
+.dtm [style^="--aspect-ratio"] {
+    background: transparent;
+}
+
+
+/* --------------------------------------------------------------------- *
+
+@Theme
+
+* --------------------------------------------------------------------- */
+/*	Font Size
+    @Desc: Set up our font sizes
+* --------------------------------------------------------------------- */
+h1, .h1 {
+    font-size: 75px;
+}
+
+h2, .h2 {
+    font-size: 50px;
+}
+
+h3, .h3 {
+    font-size: 35px;
+}
+
+h4, .h4 {
+    font-size: 30px;
+}
+
+h5, .h5 {
+    font-size: 25px;
+}
+
+h6, .h6  {
+    font-size: 20px;
+}
+
+body, .p  {
+    font-size: 16px;
+}
+
+
+/*	@Font Family
+    @Desc: Set up our font families
+* --------------------------------------------------------------------- */
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.sans-primary-book {
+    font-family: 'Gotham Book', sans-serif;
+}
+
+.sans-primary-medium {
+    font-family: 'Gotham Medium', sans-serif;
+}
+
+.sans-primary-bold {
+    font-family: 'Gotham Bold', sans-serif;
+}
+
+.sans-primary-ultra {
+    font-family: 'Gotham Ultra', sans-serif;
+}
+
+
+/*	@Color
+    @Desc: Set up our font color palette
+    * --------------------------------------------------------------------- */
+.color-primary {
+    color: #650DA2;
+}
+
+.color-secondary {
+    color: #650DA2;
+}
+
+.color-tertiary {
+    color: #650DA2;
+}
+
+
+/*	@Background
+    @Desc: Set up our background color palette
+    * --------------------------------------------------------------------- */
+.bg-primary {
+    background: #650DA2;
+}
+
+.bg-secondary {
+    background: #650DA2;
+}
+
+.bg-tertiary {
+    background: #650DA2;
+}
+
+/* set the desktop color of our white-space background */
+.dtm__in--dv {
+    background: black;
+}
+
+/* set the color of our canvas background */
+.l-outer__in {
+    background: white;
+}
+
+/* set the desktop color of our header, midline & footer */
+.dtm__in--dv .l-header,
+.dtm__in--dv .l-footer,
+.dtm__in--dv .o-box--banner {
+    background: #fafafa;
+    color: #8A8C8E;
+}
+
+/* set the desktop color of the header & midline border color */
+.dtm__in--dv .l-header,
+.dtm__in--dv .o-box--banner {
+    border-color: #8A8C8E;
+}
+
+/* set the color of our form headline (defaults to #333) */
+.c-brand--form .c-brand--form__legend {
+    background: #111111;
+}
+
+/* set the color of our order review table (defaults to red) */
+.c-brand--table th,
+.c-brand--table__th {
+    background: #EDC936;
+}
+
+/* set the color of our mobile order now button */
+.dtm .order-button {
+    background: #f58223;
+}
+
+/* set the color of our mobile nav button */
+.dtm .nav-button {
+    background: #f58223;
+}
+
+/* set the color of our mobile view-full-site button */
+.dtm .vfs {
+    background: #333;
+}
+
+
+/*	@Graphics
+    * --------------------------------------------------------------------- */
+/* set our desktop background image */
+.dtm__in--dv {}
+
+/* Payment graphics for desktop */
+.dtm__in--dv .payment {
+    /* can control the size of the graphics */
+    font-size: 1rem;
+}
+
+/* Payment graphics for mobile */
+/* these rules make sure the payment graphics are bound to the offer image */
+.dtm__in--mv .offer-area {
+    position: relative;
+    display: block;
+}
+
+/* overlay the payment graphics over the offer image */
+.dtm__in--mv .offer-area .payment {
+    position: absolute;
+}
+
+@media all and ( max-width : 640px ) {
+    /* overlay the payment graphics over the offer image */
+    .dtm__in--mv .offer-area .payment {
+        /* can control the position of the graphics | can also use left & top as well if necessary */
+        right: 1vw;
+        bottom: 5vw;
+
+        /* can control the container of the graphics */
+        width: 45vw;
+
+        /* can control the size of the graphics */
+        font-size: 1.5vw;
+    }
+}
+
+/* for screens larger than 640px width */
+@media all and ( min-width : 641px ) {
+    .dtm__in--mv .offer-area .payment {
+        /* can control the position of the graphics | can also use left & top as well if necessary */
+        right: 5.5rem;
+        bottom: 4rem;
+
+        /* can control the container of the graphics */
+        width: 19rem;
+
+        /* can control the size of the graphics */
+        font-size: 1rem;
+    }
+}
+
+
+/*	@Features & Benefits
+    @Desc: thematize the features & benefits
+    * --------------------------------------------------------------------- */
+/* set the text color and size of the headline */
+.fb__headline {
+    color: white;
+    font: 20px/1 'Gotham Ultra', sans-serif;
+    text-transform: uppercase;
+}
+
+/* set the color of our banner and folds */
+.fb__banner {
+    background: #7fc027;
+    border-color: #568616;
+}
+
+/* set the color & size of our list */
+.fb__list {
+    background: white;
+    border-color: white;
+    font-size: 16px;
+    list-style: none;
+}
+
+    /* set the size of the features box */
+    .fb .fb__list {
+        left: 0;
+    }
+
+/* set the color of our bullets */
+.fb__list li:before {
+    background: #e81e00;
+}

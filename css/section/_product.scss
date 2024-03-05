@@ -1,0 +1,177 @@
+@use "sass:map";
+@use "sass:math";
+
+$select: ".product" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    // flex setup mainly for desktop and fallback
+    @include wrapper;
+
+    // the look of what is inside the container block
+    @include product;
+    @include shadow-after-load;
+
+    @media all and (max-width: queries.get(nav)) {
+        @include side-by-side;
+    }
+}
+
+@mixin wrapper {
+    #{$select}-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+
+        > * {
+            flex: 0 1 25%;
+            margin: 0;
+        }
+
+        @content;
+    }
+}
+
+@mixin product {
+    #{contain.$select} {
+        &--product {
+            @include contain.ratio(math.div(265, 630));
+            max-width: 11.5em;
+        }
+    }
+
+    #{$select} {
+        padding: 0.6em;
+        font-size: 1.5vw;
+        font-weight: 600;
+        background: black;
+        color: white;
+        border: none;
+        outline: none;
+        text-align: center;
+
+        img,
+        picture {
+            margin: auto;
+        }
+
+        &__title {
+            font-size: 2em;
+            line-height: 1;
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        &__desc {
+            font-size: 1.25em;
+        }
+
+        &__button {
+            margin: 1em 0;
+        }
+
+        &__oos {
+            pointer-events: none;
+        }
+
+        & &__button {
+            font-size: 1.4em;
+        }
+
+        font-family: fonts.get(main);
+
+        &__title {
+            font-family: fonts.get(cond);
+        }
+
+        &--teal {
+            background: colors.get(dull);
+        }
+
+        &--teal &__button {
+            color: colors.get(dull);
+        }
+
+        &--violet {
+            background: colors.get(accent);
+        }
+
+        &--violet &__button {
+            color: colors.get(accent);
+        }
+
+        &--rose {
+            background: colors.get(extra);
+        }
+
+        &--rose &__button {
+            color: colors.get(extra);
+        }
+
+        &--stardust {
+            background: url(/images/bg-glitter--big.jpg) center center no-repeat;
+            background-size: cover;
+        }
+
+        &--stardust &__button {
+            color: #b0bec6;
+        }
+
+        @content;
+    }
+}
+
+@mixin side-by-side {
+    #{$select}-wrapper {
+        display: block;
+    }
+
+    #{$select} {
+        text-align: left;
+        @include group.contain(0.75em);
+        margin: 0;
+        align-items: center;
+        flex-wrap: nowrap;
+        font-size: 5vw;
+
+        &__image {
+            flex: 0 1 6em;
+        }
+
+        &__copy {
+            flex: 1 1 14em;
+        }
+
+        &:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        @content;
+    }
+}
+
+@mixin shadow-after-load {
+    // #{$select}__image.load-item--success::after {
+    //     content: "";
+    //     display: block !important;
+    //     position: absolute;
+    //     right: 0;
+    //     top: 90%;
+    //     left: 0;
+    //     width: 73%;
+    //     height: 7%;
+    //     margin: 0 auto;
+    //     border-radius: 100%;
+    //     box-shadow: -0.7em 0.4rem 1.8rem rgba(0, 0, 0, 0.7);
+    // }
+}

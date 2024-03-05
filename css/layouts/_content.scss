@@ -1,0 +1,121 @@
+$select: ".content" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    #{$select} {
+        &__group {
+            @include group.contain;
+            align-items: center;
+        }
+
+        h1,
+        &__title {
+            font: italic 800 6.3em fonts.get(cond);
+            color: colors.product(violet);
+            background: -webkit-linear-gradient(
+                14deg,
+                #efa9be 0%,
+                #a173e7 50%,
+                #007da4 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 0px #00000000;
+            line-height: 0.9;
+            margin: 0.4em 0 0;
+            text-transform: uppercase;
+        }
+
+        &__sub-title {
+            margin: 0.5em;
+            font: 600 2.45em fonts.get(main);
+            line-height: 1.2;
+        }
+
+        h2,
+        h3 {
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.2em;
+        }
+
+        &__header {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            @include copy.separate;
+        }
+
+        &__footer {
+            text-align: center;
+        }
+
+        &__text {
+            @include copy.separate(1em);
+            font-size: 1.2em;
+        }
+
+        &__block {
+            @include copy.separate(1em);
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            &__header {
+                font-size: 0.45em;
+            }
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        ul,
+        ol,
+        li {
+            @include copy.separate(0.5em);
+        }
+
+        @content;
+    }
+}
+
+@mixin instructions {
+    #{$select} {
+        &--instructions {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin faq {
+    #{$select} {
+        &--faq {
+            #{$select} {
+                &__title {
+                    &:not(:first-child) {
+                        margin-top: 2em;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}

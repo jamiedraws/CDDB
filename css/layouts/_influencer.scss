@@ -1,0 +1,66 @@
+@use "sass:math";
+
+$select: ".influencer" !default;
+
+// config
+@use "../config/colors";
+@use "../config/fonts";
+@use "../config/queries";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    #{contain.$select} {
+        &--influencer {
+            @include contain.ratio(math.div(76, 135));
+            background: colors.get(placeholder);
+        }
+    }
+
+    #{$select} {
+        text-align: center;
+
+        &__title {
+            text-transform: initial;
+        }
+
+        &__content {
+            margin: 3em 0;
+        }
+
+        &__link-container {
+            font-size: 1.5vw;
+        }
+
+        & &__link {
+            font-size: 1.4em;
+        }
+
+        &__button {
+            margin: 1em;
+            display: block;
+            text-decoration: none;
+
+            > svg {
+                font-size: 2em;
+                width: 8em;
+                height: 4em;
+            }
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: 1.9vw;
+
+            &__header {
+                font-size: 1.5vw;
+            }
+
+            &__link-container {
+                display: none;
+            }
+        }
+
+        @content;
+    }
+}

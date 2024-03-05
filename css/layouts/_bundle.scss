@@ -1,0 +1,284 @@
+@use "sass:math";
+
+$select: ".bundle" !default;
+
+// config
+@use "../config/colors";
+@use "../config/fonts";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/copy";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    #{contain.$select} {
+        &--batiste-contour {
+            @include contain.ratio(math.div(46, 176));
+        }
+    }
+
+    #{$select} {
+        text-align: center;
+
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: 1.9vw;
+        }
+
+        &__subtitle {
+            font-size: 2.25em;
+            margin-top: 0;
+        }
+
+        &__group {
+            @include group.contain(1em);
+            margin: 1em;
+            font-family: fonts.get(cond);
+            font-style: italic;
+            font-weight: 800;
+        }
+
+        &__box {
+            border: 0.5em solid;
+            border-color: currentColor;
+            @include group.contain(0.25em);
+            align-items: center;
+            justify-content: center;
+            padding: 1em;
+            margin-bottom: 1em;
+
+            > picture {
+                max-width: 3.3em;
+            }
+        }
+
+        &__plus {
+            font-size: 3em;
+        }
+
+        &__caption {
+            font-size: 3em;
+            text-transform: uppercase;
+            flex: 1 1 100%;
+        }
+
+        &__copy {
+            font-size: 2.5em;
+            line-height: 1.2;
+            @include copy.separate;
+            margin: auto;
+
+            > b {
+                font-style: normal;
+            }
+        }
+
+        &__text-promo-code {
+            display: inline-flex;
+            flex-direction: column;
+
+            > small {
+                display: block;
+                font-size: 0.55em;
+                color: colors.get(base);
+            }
+        }
+
+        &__button {
+            display: block;
+            text-decoration: none;
+            margin: 1em;
+
+            > svg {
+                font-size: 2em;
+                width: 8em;
+                height: 4em;
+            }
+        }
+
+        &__markdown {
+            text-decoration: line-through;
+            text-decoration-color: colors.get(primary-dark);
+        }
+
+        &__offer {
+            font-weight: 800;
+        }
+
+        @content;
+    }
+
+    @include item(1) {
+    }
+
+    @include item(2) {
+        flex-basis: 22em;
+
+        #{$select} {
+            &__copy {
+                max-width: 7em;
+            }
+
+            @media all and (max-width: queries.get(mobile)) {
+                &__box {
+                    max-width: 25em;
+                }
+            }
+        }
+    }
+
+    @include item(3) {
+        flex-basis: 35em;
+
+        #{$select} {
+            &__copy {
+                max-width: 13em;
+            }
+        }
+    }
+}
+
+@mixin item($index: 1) {
+    #{$select} {
+        &__item {
+            &:nth-child(#{$index}) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin order {
+    #{$select} {
+        &--order {
+            #{$select} {
+                &__checkbox-label {
+                    text-align: left;
+                }
+
+                &__box {
+                    margin: 0;
+                    padding: 2em;
+
+                    @media all and (max-width: queries.get(mobile)) {
+                        font-size: 1.25em;
+                    }
+                }
+
+                &__item {
+                    flex-grow: 1;
+                }
+
+                &__label-text {
+                    line-height: 1;
+                    margin-top: -0.5em;
+                    margin-left: 0.5em;
+                }
+
+                &__image-dropdown-group {
+                    flex: 1 1 100%;
+                }
+
+                &__group {
+                    margin: -1em;
+                    justify-content: center;
+                }
+
+                &__group,
+                &__box {
+                    overflow: visible;
+                }
+
+                &__image-dropdown,
+                &__image-caption {
+                    flex: 0 1 15em;
+                }
+
+                &__dropdown {
+                    margin-top: 1em;
+                }
+
+                &__caption {
+                    display: block;
+                }
+
+                &__product-caption {
+                    font-style: normal;
+                    font-size: 1.5em;
+                    text-align: center;
+                    line-height: 1;
+
+                    margin-top: 0.5em;
+
+                    > span {
+                        color: black;
+                    }
+
+                    > b {
+                        text-transform: uppercase;
+                    }
+
+                    > b,
+                    small {
+                        display: block;
+                    }
+                }
+
+                &__banner {
+                    padding: 0.3em 0.75em;
+                    background: colors.get(vibrant);
+                    border: 0.1em solid white;
+
+                    color: white;
+                    font-size: 2.4em;
+                    line-height: 1;
+                    text-transform: uppercase;
+
+                    b {
+                        font-weight: 900;
+                        font-size: 1.25em;
+                        display: block;
+                    }
+
+                    transform: skewY(-8deg);
+                    margin-top: -1.25em;
+                    margin-left: 1.5em;
+
+                    @media all and (max-width: queries.get(mobile)) {
+                        margin: 1em auto;
+                        font-size: 3em;
+                    }
+                }
+            }
+
+            @include item(1) {
+                flex-basis: 27em;
+            }
+
+            @include item(2) {
+                flex-basis: 37em;
+            }
+
+            @include item(3) {
+                flex-basis: 100%;
+            }
+
+            @media all and (max-width: queries.get(mobile)) {
+                @include item(2) {
+                    flex-basis: 100%;
+
+                    #{$select} {
+                        &__box {
+                            max-width: none;
+                        }
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}

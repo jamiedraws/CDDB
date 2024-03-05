@@ -1,0 +1,42 @@
+$select: ".testimonial" !default;
+
+// config
+@use "../config/queries";
+
+@mixin base {
+    #{$select} {
+        figure {
+            font-size: 2.25em;
+            flex-direction: column;
+        }
+
+        blockquote,
+        figcaption {
+            width: 100%;
+        }
+
+        figcaption {
+            font-weight: 600;
+            margin: 0.5em;
+        }
+
+        &__title {
+            margin-top: 0.5em;
+        }
+
+        &__content {
+            margin-top: 2em;
+            margin-bottom: 5em;
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: 1.9vw;
+
+            figure {
+                font-size: 3.25em;
+            }
+        }
+
+        @content;
+    }
+}

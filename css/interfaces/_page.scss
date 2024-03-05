@@ -1,0 +1,146 @@
+@use "sass:math";
+@use "sass:map";
+
+// interfaces
+@use "app";
+@use "form";
+
+// layouts
+@use "../layouts/slide";
+@use "../layouts/hero";
+@use "../layouts/bundle";
+@use "../layouts/content";
+@use "../layouts/influencer";
+@use "../layouts/instructions";
+@use "../layouts/view";
+
+// section
+@use "../section/billboard";
+@use "../section/product";
+@use "../section/step";
+@use "../section/difference";
+@use "../section/testimonial";
+
+// components
+@use "../components/list";
+@use "../components/banner";
+@use "../components/accordion";
+@use "../components/card";
+@use "../components/playlist";
+
+// themes
+@use "../themes/background";
+
+// utilities
+@use "../utilities/text";
+
+// abstracts
+@use "../abstracts/midline-title";
+@use "../abstracts/before-after";
+@use "../abstracts/footer-callout";
+
+@mixin index($critical: false) {
+    @if $critical {
+        @include landing-page($critical: true) {
+            @include view.promo-banner-nav;
+            @include hero.base;
+        }
+    } @else {
+        @include background.white;
+        @include background.purple-to-teal;
+
+        @include text.wrap;
+        @include text.angle;
+        @include text.center;
+        @include text.shadow;
+        @include text.disclaimer;
+
+        @include list.checkmarks;
+
+        @include midline-title.base;
+
+        @include billboard.new;
+
+        @include product.base;
+        @include step.new;
+
+        @include before-after.base;
+        @include difference.new;
+        @include playlist.base;
+
+        @include bundle.base;
+
+        @include testimonial.base;
+
+        @include slide.before-after;
+        @include slide.testimonial;
+
+        @include landing-page;
+    }
+}
+
+@mixin landing-page($critical: false) {
+    @if $critical {
+        @include view.promo-banner;
+        @include banner.base;
+        @include banner.promo-code;
+        @include hero.banner;
+
+        @include background.base;
+        @include background.rainbow;
+        @include background.rainbow-inverse;
+
+        @include instructions.base;
+        @include instructions.steps;
+        @include instructions.tips;
+        @include instructions.ingredients;
+
+        @include accordion.base;
+        @include card.base;
+        @include content.faq;
+
+        @content;
+    } @else {
+        @include app.defer {
+            @include slide.influencer;
+            @include influencer.base;
+            @include footer-callout.base;
+
+            @content;
+        }
+    }
+}
+
+@mixin order-now($critical: false) {
+    @if $critical {
+        @include landing-page($critical: true) {
+            @include bundle.base;
+            @include bundle.order;
+        }
+    } @else {
+        @include form.checkout;
+        @include slide.product-color;
+        @include landing-page;
+    }
+}
+
+@mixin confirmation($critical: false) {
+    @if $critical {
+        @include landing-page($critical: true) {
+            @include form.confirmation;
+        }
+    } @else {
+        @include landing-page;
+    }
+}
+
+@mixin refer-a-friend($critical: false) {
+    @if $critical {
+        @include landing-page($critical: true) {
+            @include form.checkout;
+            @include form.refer-a-friend;
+        }
+    } @else {
+        @include landing-page;
+    }
+}

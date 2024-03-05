@@ -1,0 +1,53 @@
+@use "sass:map";
+
+$select: ".color" !default;
+
+$products: (
+    teal: #016370,
+    rose: #ee95be,
+    stardust: #b0bec5,
+    violet: #a173e7
+);
+
+$list: (
+    base: #333333,
+    light: white,
+    primary: #60cdcc,
+    primary-dark: map.get($products, teal),
+    accent: #a173e7,
+    extra: #efa9be,
+    vibrant: #ee51c5,
+    glam: #007da4,
+    pop: #fff450,
+    dull: #016370,
+    formHeaders: #13216a,
+    table: #13216a,
+    border: #6177f7,
+    placeholder: #252525
+);
+
+@function get($name) {
+    @return map.get($list, $name);
+}
+
+@function product($name) {
+    @return map.get($products, $name);
+}
+
+@mixin selectors {
+    #{$select} {
+        @each $name, $color in $list {
+            &-#{"" + $name} {
+                color: $color;
+            }
+        }
+
+        @each $name, $color in $products {
+            &-#{"" + $name} {
+                color: $color;
+            }
+        }
+
+        @content;
+    }
+}

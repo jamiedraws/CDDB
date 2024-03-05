@@ -1,0 +1,213 @@
+@use "sass:map";
+
+$select: ".nav" !default;
+
+// utils
+@use "../../Shared/css/template/base/utils/unit-conversion" as convert;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// layouts
+@use "../../Shared/css/template/shoppingcart/layouts/nav" with
+    (
+        $colors: (
+            background: transparent,
+            button-open: currentColor,
+            button-close: colors.get(extra)
+        ),
+        $mq: (
+            container-min: 100000px,
+            container-max: 99999px
+        )
+    );
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/position";
+
+@mixin base {
+    @include nav.new {
+        box-shadow: none;
+        font-size: fonts.em(10);
+
+        &__in {
+            align-items: stretch;
+            flex: 1;
+        }
+
+        &__group {
+            margin: 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        & &__link {
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+
+        & &__link {
+            $padding: 2rem;
+            padding: 0 $padding;
+
+            > span {
+                padding: $padding 0;
+            }
+        }
+
+        &__logo {
+            padding: 0.5em;
+        }
+
+        &__menu &__list {
+            margin: 0.5rem;
+
+            > a {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &__list {
+            text-transform: uppercase;
+            font-size: 2em;
+        }
+
+        &__label {
+            align-self: center;
+            width: auto;
+            z-index: 5;
+            color: currentColor;
+            font-size: 1em;
+
+            &::before,
+            &::after,
+            > span {
+                border-width: 0.07em;
+            }
+        }
+
+        &::before {
+            content: "";
+            opacity: 0;
+            background: white;
+            box-shadow: 0 0 1em rgb(114 114 114);
+            @include position.center-absolute;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &--is-fixed {
+            @include convert-to-fixed-state;
+        }
+
+        @media all and (max-width: queries.get(hero-lg)) {
+            @include convert-to-fixed-state;
+        }
+    }
+
+    @include nav.bar {
+        &__pane {
+            background: transparent;
+
+            &::before,
+            &::after {
+                opacity: 0;
+            }
+        }
+
+        &__list > a {
+            flex: 0 1 auto;
+            font-family: fonts.get(third);
+        }
+    }
+
+    @include nav.standalone;
+
+    @include nav.drawer {
+        &__label {
+            color: white;
+        }
+
+        &__group > &__logo {
+            transition: opacity 0.3s ease-in-out;
+
+            @media all and (min-width: queries.get(hero-lg)) {
+                opacity: 0;
+            }
+        }
+
+        &__list > &__logo {
+            margin: 0 1em;
+            font-size: 0.75em;
+        }
+
+        &__group > &__label {
+            order: 0;
+        }
+
+        &__pane {
+            font-size: 0.7em;
+
+            -webkit-transform: translateX(103%);
+            transform: translateX(103%);
+            right: 0;
+            left: auto;
+
+            &::before {
+                background: linear-gradient(90deg, #927ef2, #8ffbfc);
+            }
+        }
+
+        &__link {
+            font-style: italic;
+            font-weight: 700;
+            font-family: fonts.get(cond);
+
+            > span {
+                transform: scale(1);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            &:hover,
+            &:focus {
+                color: colors.get(primary);
+                background: white;
+
+                > span {
+                    transform: scale(1.1);
+                }
+            }
+
+            &--icon {
+                > span + svg {
+                    margin-left: 0.5em;
+                }
+            }
+        }
+    }
+
+    @content;
+}
+
+@mixin convert-to-fixed-state {
+    color: colors.get(accent);
+
+    &::before {
+        opacity: 1;
+    }
+
+    #{$select} {
+        &__label {
+            color: colors.get(extra);
+        }
+    }
+
+    #{$select}__group > #{$select}__logo {
+        opacity: 1;
+    }
+}

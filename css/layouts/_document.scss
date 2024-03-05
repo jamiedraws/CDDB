@@ -1,0 +1,114 @@
+@use "sass:map";
+@use "sass:color";
+@use "sass:math";
+
+$sizes: (
+    desktop: 140rem,
+    base-font: 0.628
+);
+
+// utils
+@use "../../Shared/css/template/base/utils/unit-conversion" as convert with
+    ($base: map.get($sizes, base-font));
+
+@use "../../Shared/css/template/dtm/utils/scope";
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// layouts
+@use "../../Shared/css/template/base/layouts/document";
+@use "../../Shared/css/template/base/layouts/section" with
+    ($frame: 1rem, $container: map.get($sizes, desktop));
+@use "../layouts/view";
+
+// components
+@use "../../Shared/css/template/base/components/list";
+
+// themes
+@use "../../Shared/css/template/base/themes/background";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    @include document.base;
+
+    @include colors.selectors;
+
+    @include scope.get-root {
+        font-size: #{map.get($sizes, base-font)}vw;
+
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: clamp(
+                #{math.div(map.get($sizes, base-font), 2)}rem,
+                2.5vw,
+                #{map.get($sizes, base-font)}rem
+            );
+        }
+    }
+
+    @include scope.for-template {
+        font: 500 #{convert.to-rem(16)} fonts.get(main), sans-serif;
+        color: colors.get(base);
+        line-height: 1.45;
+    }
+
+    h2 {
+        font-size: convert.to-rem(60);
+    }
+
+    #{contain.$select} {
+        &--logo {
+            @include contain.ratio(math.div(243, 62));
+        }
+    }
+
+    button {
+        word-break: break-word;
+    }
+
+    input {
+        line-height: inherit;
+    }
+
+    ul,
+    ol {
+        margin-left: 1em;
+    }
+
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    @content;
+
+    [data-src-img] > img {
+        opacity: 0;
+    }
+
+    @include section;
+    @include view.base;
+}
+
+@mixin section {
+    @include section.new {
+        &__frame {
+            padding: #{section.$frame};
+        }
+
+        &--nav &__in {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        &--main &__in {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}

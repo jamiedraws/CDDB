@@ -1,0 +1,279 @@
+@use "sass:map";
+@use "sass:math";
+
+$doc-size: 980px;
+
+$breakpoints: (
+    desktop: 980px,
+    mobile: 640px,
+    mobile-narrow: 300px
+);
+
+@use "../../Shared/css/template/dtm/components/contain";
+@use "dependencies/style-block";
+
+@include contain.new {
+    &--logo {
+        @include contain.ratio(math.div(243, 62));
+        max-width: 243px;
+    }
+
+    &--video {
+        @include contain.ratio(math.div(16, 9));
+        background: #252525;
+    }
+
+    &--girls {
+        @include contain.ratio(math.div(491, 459));
+        max-width: 491px;
+    }
+
+    &--product {
+        @include contain.ratio(math.div(131, 436));
+        max-width: 131px;
+    }
+
+    &--tagline {
+        @include contain.ratio(math.div(368, 174));
+        max-width: 368px;
+    }
+
+    &--item {
+        @include contain.ratio(math.div(110, 323));
+        max-width: 110px;
+    }
+}
+
+.header {
+    padding: 1.5rem 0;
+    color: white;
+    &__in {
+        max-width: $doc-size;
+        margin: 0 auto;
+    }
+    &__logo {
+        flex: 0 1 243px;
+    }
+    &__group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.headline {
+    padding: 0 1em 0 0.5em;
+    font-family: futura-pt, sans-serif;
+    font-weight: 800;
+    font-size: 63px;
+    small {
+        display: block;
+        font-family: "Avenir Next Demi Bold", sans-serif;
+        font-weight: 600;
+        font-size: 23px;
+        font-size: clamp(12px, 0.4em, 23px);
+        margin-top: 0.3em;
+    }
+}
+
+.dtm__in--mv .headline {
+    font-size: 1.6rem;
+}
+
+.dtm {
+    background: rgb(224, 160, 193);
+    background: linear-gradient(
+        90deg,
+        rgba(224, 160, 193, 1) 0%,
+        rgba(147, 126, 243, 1) 30%,
+        rgba(147, 126, 243, 1) 75%,
+        rgba(144, 252, 253, 1) 100%
+    );
+}
+
+.dtm__in--dv,
+.dtm__in--mv {
+    background: none;
+}
+
+.dtm--index #content_top {
+    background: none;
+}
+
+#content_top {
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.btn {
+    font: normal 2.5rem/1 futura-pt-bold, sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #703dbf;
+    background: white;
+    border: none;
+    padding: 0.75em;
+    display: inline-block;
+    margin: 0.5em auto;
+    transition: background 0.25s, color 0.25s;
+    &:focus,
+    &:hover {
+        background: #703dbf;
+        color: white;
+    }
+}
+
+#AcceptOfferButton {
+    background: #016471;
+    color: white;
+    font: 2rem/1 futura-pt-bold, sans-serif;
+    text-indent: 0px;
+    text-transform: uppercase;
+    padding: 0.75em 2em;
+    transition: background 0.25s;
+    &:hover,
+    &:focus {
+        background: #000;
+    }
+}
+
+.hero {
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    &__offer {
+        flex: 1 1 auto;
+        z-index: 3;
+    }
+    &__image {
+        flex: 0 1 491px;
+        margin-bottom: -4px;
+    }
+}
+
+@media all and (min-width: $doc-size) {
+    .hero {
+        &__offer {
+            padding-bottom: 20px;
+            margin-right: -20px;
+        }
+        &__tagline {
+            position: absolute;
+        }
+        &__image {
+            margin-right: 30px;
+        }
+    }
+}
+
+.offer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__text {
+        font-family: futura-pt-bold, sans-serif;
+        text-align: center;
+    }
+    &__price {
+        margin: -3.9em 0 1em 0;
+        font-size: 3rem;
+        strong {
+            display: block;
+            font-weight: normal;
+            font-size: 2em;
+        }
+    }
+}
+
+@media all and (max-width: $doc-size) {
+    .header {
+        &__logo {
+            flex: 0 1 7em;
+        }
+    }
+    .hero {
+        flex-wrap: wrap;
+        &__item {
+            flex: 0 1 100%;
+        }
+    }
+    .offer {
+        &__price {
+            font-size: 2.4rem;
+        }
+    }
+    .btn {
+        font-size: 2.4rem;
+    }
+    .contain--tagline {
+        min-width: 12em;
+    }
+}
+
+.c-brand--form .c-brand--form__legend {
+    background: #a173e7;
+}
+
+.dtm__in--dv .l-footer {
+    background: #a173e7;
+    color: white;
+    border: none;
+}
+
+.bg {
+    &--teal {
+        background: #016471;
+    }
+    &--violet {
+        background: #a173e7;
+    }
+    &--rose {
+        background: #efa9be;
+    }
+    &--glitter {
+        background: url(/images/bg-glitter.jpg);
+        background-size: 100% auto;
+    }
+}
+
+.option {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font: 1.2rem/1.2 "Avenir Next Demi Bold", sans-serif;
+    strong {
+        font-style: italic;
+        font-weight: bold;
+        font-family: futura-pt-condensed, sans-serif;
+        font-size: 1.8em;
+        display: block;
+    }
+    figure {
+        margin: 0;
+        picture {
+            margin: 1em auto;
+        }
+    }
+}
+
+@media all and (min-width: $doc-size) {
+    .option {
+        &__item {
+            flex: 0 1 25%;
+        }
+    }
+}
+
+@media all and (max-width: $doc-size) {
+    .option {
+        &__item {
+            flex: 1 1 14em;
+        }
+    }
+    .btn--cart {
+        font-size: 1.6em;
+    }
+}

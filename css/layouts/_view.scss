@@ -1,0 +1,54 @@
+$select: ".view" !default;
+
+// config
+@use "../config/queries";
+
+// layouts
+@use "../../Shared/css/template/base/layouts/view" with
+    ($breakpoint: queries.get(mobile));
+
+@mixin base {
+    @include view.new;
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin promo-banner-nav {
+    $nav-height: 135;
+
+    @include view.set-anchor-position(
+        $static-amount: #{queries.rem($nav-height)},
+        $dynamic-amount: #{queries.rem(105)}
+    );
+
+    @include view.set-position-context(
+        #{view.$select}--content,
+        $static-amount: #{queries.rem($nav-height)},
+        $dynamic-amount: #{queries.em(60)}
+    );
+
+    @media all and (max-width: queries.get(promo-banner-wrap)) {
+        #{$select} {
+            &__anchor {
+                top: -#{queries.rem(126)};
+            }
+        }
+    }
+}
+
+@mixin promo-banner {
+    @include view.set-anchor-position(
+        $static-amount: #{queries.rem(70)},
+        $dynamic-amount: #{queries.rem(38)}
+    );
+
+    @media all and (max-width: queries.get(promo-banner-wrap)) {
+        #{$select} {
+            &__anchor {
+                top: -#{queries.rem(58)};
+            }
+        }
+    }
+}

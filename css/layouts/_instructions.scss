@@ -1,0 +1,138 @@
+$select: ".instructions" !default;
+
+// config
+@use "../config/colors";
+@use "../config/fonts";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    #{$select} {
+        padding: 2em 1em;
+        text-align: center;
+        color: colors.product(violet);
+
+        &__group {
+            @include group.contain(1em);
+        }
+
+        & &__title {
+            font: 600 2.45em fonts.get(main);
+            line-height: 1.2;
+        }
+
+        &__header {
+            flex-basis: 100%;
+        }
+
+        @media all and (min-width: queries.get(mobile)) {
+            padding: 2em;
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            &__header {
+                font-size: 0.6em;
+            }
+
+            &__group {
+                @include group.flexchild(1 1 100%);
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin steps {
+    #{$select} {
+        &--steps {
+            svg {
+                width: 15em;
+                height: 9em;
+            }
+
+            figure {
+                &:first-of-type {
+                    svg {
+                        width: 10.75em;
+                        height: 7em;
+                    }
+                }
+            }
+
+            #{$select} {
+                &__picture {
+                }
+            }
+
+            @media all and (min-width: queries.get(mobile)) {
+                figure {
+                    flex-basis: 15em;
+                }
+
+                #{$select} {
+                    &__picture {
+                        width: 15em;
+                        height: 10em;
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin tips {
+    #{$select} {
+        &--tips {
+            background: colors.product(rose);
+            color: white;
+
+            #{$select} {
+                &__list {
+                    flex-basis: 100%;
+                    background: white;
+                    color: colors.product(rose);
+                    column-width: 20em;
+                    column-rule: colors.product(rose) 2px solid;
+                    padding: 1em;
+                    list-style: none;
+                }
+
+                &__item {
+                    display: inline-block;
+                    padding: 1em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin ingredients {
+    #{$select} {
+        &--ingredients {
+            color: colors.get(base);
+
+            strong {
+                font-weight: 600;
+            }
+
+            #{$select} {
+                &__text {
+                    @include copy.separate(1em);
+                }
+            }
+
+            @content;
+        }
+    }
+}

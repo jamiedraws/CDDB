@@ -1,0 +1,82 @@
+$select: ".bg" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+
+// themes
+@use "../../Shared/css/template/base/themes/background";
+
+@mixin base {
+    @include background.new {
+        &__picture {
+            background: colors.get(placeholder);
+        }
+    }
+
+    @include background.image;
+
+    @include background.name-color-map(
+        "primary",
+        colors.get(primary),
+        colors.get(light)
+    );
+
+    @include background.name-color-map(
+        "primary-dark",
+        colors.get(primary-dark),
+        colors.get(light)
+    );
+
+    @include background.name-color-map(
+        "accent",
+        colors.get(accent),
+        colors.get(primary)
+    );
+}
+
+@mixin rainbow {
+    #{$select}--rainbow {
+        background: linear-gradient(
+            -90deg,
+            #efa9be 0%,
+            #a173e7 50%,
+            #007da4 100%
+        );
+        color: white;
+
+        @content;
+    }
+}
+
+@mixin rainbow-inverse {
+    #{$select}--rainbow-inverse {
+        background: linear-gradient(
+            90deg,
+            #efa9be 0%,
+            #a173e7 50%,
+            #007da4 100%
+        );
+        color: white;
+
+        @content;
+    }
+}
+
+@mixin white {
+    #{$select}--white {
+        background: white;
+        color: #444;
+
+        @content;
+    }
+}
+
+@mixin purple-to-teal {
+    #{$select}--purple-to-teal {
+        background: linear-gradient(90deg, #927ef2, #8ffbfc);
+        color: white;
+
+        @content;
+    }
+}

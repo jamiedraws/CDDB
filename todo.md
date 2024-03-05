@@ -1,0 +1,4 @@
+- add pwa icon set
+- update icon callouts in master file
+- are we using the fingerprint nav
+- do we have instagram login

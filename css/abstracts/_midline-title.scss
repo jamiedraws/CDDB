@@ -1,0 +1,14 @@
+$select: ".midline-title" !default;
+
+// config
+@use "../config/queries";
+
+@mixin base {
+    #{$select} {
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: 0.5em;
+        }
+
+        @content;
+    }
+}

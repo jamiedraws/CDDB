@@ -1,0 +1,249 @@
+@use "sass:math";
+
+$select: ".step" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/group";
+@use "../../Shared/css/template/base/abstracts/copy";
+
+// media
+@use "../../Shared/css/template/shoppingcart/media/contain";
+
+@mixin theme($color: currentColor) {
+    color: $color;
+
+    &::before {
+        background: $color;
+    }
+}
+
+@mixin step() {
+    &::before {
+        $size: 1.5em;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.25em;
+        font-size: 1.75em;
+        font-style: normal;
+        font-weight: 700;
+        flex: 0 0 #{$size};
+        max-width: #{$size};
+        max-height: #{$size};
+        color: white;
+        background: black;
+        counter-increment: step;
+        content: counter(step);
+    }
+}
+
+@mixin border {
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 20%;
+        height: 60%;
+        width: 0.1em;
+        background: #acdedf;
+        right: 0;
+    }
+}
+
+@mixin new {
+    #{contain.$select} {
+        &--g-shake {
+            @include contain.ratio(math.div(79, 106));
+            max-width: 5em;
+        }
+
+        &--g-comb {
+            @include contain.ratio(math.div(120, 118));
+            max-width: 11em;
+        }
+
+        &--g-clock {
+            @include contain.ratio(math.div(92, 105));
+            max-width: 6em;
+        }
+    }
+
+    #{$select} {
+        text-align: center;
+        position: relative;
+        font-size: 1em;
+
+        &--main {
+            padding: 3em 1em;
+
+            @media all and (max-width: queries.get(mobile)) {
+                font-size: 3.3vw;
+            }
+        }
+
+        &__group {
+            @include group.contain(1em);
+            @include group.flexchild(1 1 10em);
+
+            text-transform: uppercase;
+            margin: 2em auto 0;
+
+            line-height: 0.9;
+
+            counter-reset: step;
+
+            > * {
+                padding: 0.75em;
+                margin: 0;
+            }
+        }
+
+        &__in {
+            background: white;
+            padding: 2em;
+        }
+
+        &__title {
+            color: colors.get(extra);
+        }
+
+        & &__button {
+            font-size: 1.4em;
+            flex: 1 1 100%;
+        }
+
+        &__figure {
+            @include group.contain;
+            flex-wrap: nowrap;
+            justify-content: center;
+            position: relative;
+
+            font: italic 800 2em fonts.get(cond);
+
+            @include step;
+
+            &:not(:last-of-type) {
+                @include border;
+            }
+
+            &:nth-child(1) {
+                @include theme(colors.get(glam));
+            }
+
+            &:nth-child(2) {
+                @include theme(colors.get(accent));
+            }
+
+            &:nth-child(3) {
+                @include theme(colors.get(extra));
+            }
+        }
+
+        &__content {
+            flex: 0 1 7em;
+        }
+
+        &__footer {
+            flex: 1 1 100%;
+            font-size: 1.5vw;
+        }
+
+        picture {
+            margin: 0 auto 0.75em;
+            height: 4em;
+        }
+
+        figcaption {
+            font-weight: 800;
+            font-style: italic;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        @content;
+    }
+
+    @media all and (max-width: queries.get(mobile)) {
+        @include convert-to-stack;
+    }
+}
+
+@mixin convert-to-stack {
+    #{$select} {
+        &__title {
+            text-align: left;
+            font-size: 4em;
+            margin: 0;
+        }
+
+        &__group {
+            > * {
+                flex: 1 1 100%;
+
+                &:not(:first-child):not(:last-child) {
+                    margin-top: 1em;
+                }
+            }
+        }
+
+        &__figure {
+            justify-content: space-around;
+            font-size: 6vw;
+
+            &::before {
+                display: none;
+            }
+
+            &:nth-child(1) {
+                #{$select}__content {
+                    @include theme(colors.get(glam));
+                }
+            }
+
+            &:nth-child(2) {
+                #{$select}__content {
+                    @include theme(colors.get(accent));
+                }
+            }
+
+            &:nth-child(3) {
+                #{$select}__content {
+                    @include theme(colors.get(extra));
+                }
+            }
+        }
+
+        &__content {
+            flex-grow: 1;
+
+            @include group.contain;
+            @include step;
+
+            &::before {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 1.25em;
+            }
+        }
+
+        &__footer {
+            font-size: 5vw;
+        }
+
+        picture {
+            flex: 0 0 3em;
+            margin-left: -1.75em;
+            margin-right: auto;
+        }
+
+        figcaption {
+            flex: 1 1 100%;
+        }
+    }
+}

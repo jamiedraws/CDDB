@@ -1,0 +1,60 @@
+$select: ".header" !default;
+
+// config
+@use "../config/queries";
+@use "../config/fonts";
+@use "../config/colors";
+
+@mixin base {
+    @include logo-title;
+
+    #{$select} {
+        transition: transform 0.3s ease-in-out;
+
+        &--is-fixed {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+        }
+
+        &--is-hidden {
+            transform: translateY(-100%);
+        }
+
+        @content;
+    }
+}
+
+@mixin logo-title {
+    #{$select} {
+        &--logo-title {
+            padding: 1em;
+            font-size: 0.9em;
+            text-align: center;
+
+            #{$select} {
+                &__logo {
+                    display: block;
+                    max-width: 8em;
+                    margin: auto;
+                }
+
+                &__title {
+                    font-weight: 600;
+                    font-size: 1.2em;
+                    text-transform: capitalize;
+                }
+
+                &__logo-title {
+                    text-decoration: none;
+                }
+
+                &__link {
+                    text-decoration: underline;
+                }
+            }
+
+            @content;
+        }
+    }
+}

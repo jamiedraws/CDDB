@@ -1,0 +1,130 @@
+@use "sass:math";
+
+$select: ".billboard" !default;
+$breakpoint: 900px !default;
+
+// config
+@use "../config/colors";
+@use "../config/queries";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin new {
+    #{contain.$select} {
+        &--billboard-left {
+            @include contain.ratio(math.div(814, 780));
+        }
+
+        &--billboard-right {
+            @include contain.ratio(math.div(947, 382));
+        }
+    }
+
+    #{$select} {
+        overflow: hidden;
+        position: relative;
+
+        > * {
+            clear: both;
+        }
+
+        &__image-left,
+        &__image-right {
+            max-width: 40vw;
+        }
+
+        &__image-right {
+            float: right;
+        }
+
+        &__title {
+            position: relative;
+            z-index: 2;
+            margin: 0 auto;
+
+            > * {
+                margin: 0.1em 0;
+            }
+
+            @media all and (min-width: queries.get(mobile)) {
+                font-size: 1.05vw;
+            }
+
+            h3 {
+                color: colors.get(accent);
+            }
+        }
+
+        &__button {
+            color: colors.get(primary);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0.25em auto;
+            text-align: center;
+            display: block;
+            font-size: 2.5em;
+            transform: rotate(0.25turn);
+
+            > svg {
+                width: 1em;
+                height: 1em;
+            }
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            &__image-left {
+                transform: rotate(-20deg);
+                margin: -5vw 0 0 -4vw;
+            }
+
+            &__image-right {
+                max-width: 60vw;
+            }
+
+            &__title {
+                margin: 1em 2em;
+                font-size: 2vw;
+            }
+        }
+
+        @media all and (min-width: queries.get(mobile)) {
+            min-height: 40vw;
+
+            &__image-left,
+            &__image-right {
+                float: none;
+                position: absolute;
+            }
+
+            &__image-left {
+                left: 0;
+                top: 0;
+            }
+
+            &__image-right {
+                right: 0;
+                bottom: 0;
+                max-width: 50vw;
+
+                > img {
+                    margin-left: auto;
+                }
+            }
+
+            &__title {
+                position: absolute;
+                left: 41vw;
+                top: 5vw;
+            }
+
+            &__button {
+                display: none;
+            }
+        }
+
+        @content;
+    }
+}

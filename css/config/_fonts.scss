@@ -1,0 +1,52 @@
+@use "sass:map";
+
+$select: ".font" !default;
+
+$font-reset: "Arial", "Helvetica", sans-serif;
+
+// abstracts
+@use "../../Shared/css/template/base/utils/unit-conversion";
+
+$list: (
+    main: (
+        futura-pt,
+        sans-serif
+    ),
+    cond: (
+        futura-pt-condensed,
+        futura-pt,
+        sans-serif
+    ),
+    bold: (
+        futura-pt-bold,
+        futura-pt,
+        sans-serif
+    ),
+    accent: (
+        avenir,
+        sans-serif
+    ),
+    reset: $font-reset
+);
+
+@function get($name) {
+    @return map.get($list, $name);
+}
+
+@function em($pixel) {
+    @return #{unit-conversion.to-em($pixel)};
+}
+
+@function rem($pixel) {
+    @return #{unit-conversion.to-rem($pixel)};
+}
+
+@mixin selectors {
+    #{$select} {
+        @each $name, $font in $list {
+            &-#{$name} {
+                font-family: $font;
+            }
+        }
+    }
+}

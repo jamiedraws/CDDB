@@ -1,0 +1,72 @@
+@use "sass:math";
+
+$select: ".before-after" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// abstracts
+@use "../../Shared/css/template/base/abstracts/copy";
+@use "../../Shared/css/template/base/abstracts/group";
+
+// utils
+@use "../../Shared/css/template/base/utils/unit-conversion" as convert;
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    #{contain.$select} {
+        &--ba {
+            @include contain.ratio(math.div(540, 537));
+            background: colors.get(placeholder);
+        }
+    }
+
+    #{$select} {
+        text-align: center;
+
+        @media all and (max-width: 600px) {
+            font-size: 2vw;
+        }
+
+        &__title {
+            color: colors.get(accent);
+            margin-top: 0.5em;
+        }
+
+        &__content {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        &__figure {
+            flex: 1;
+            @include group.contain(0.5em);
+            margin: 0;
+            @include copy.separate;
+        }
+
+        figcaption {
+            flex: 1 1 100%;
+            font: 3em/ 1 fonts.get(cond);
+            font-weight: 800;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        picture {
+            max-width: #{convert.to-em(560)};
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            figcaption {
+                font-size: 4em;
+            }
+        }
+
+        @content;
+    }
+}

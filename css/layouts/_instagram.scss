@@ -1,0 +1,55 @@
+@use "sass:math";
+
+$select: ".instagram" !default;
+
+// config
+@use "../config/colors";
+@use "../config/fonts";
+@use "../config/queries";
+
+// media
+@use "../../Shared/css/template/base/media/contain";
+
+@mixin base {
+    #{contain.$select} {
+        &--instagram {
+            @include contain.ratio(math.div(1, 1));
+        }
+    }
+
+    #{$select} {
+        text-align: center;
+
+        &__title {
+            text-transform: initial;
+        }
+
+        &__sub-title {
+        }
+
+        &__content {
+            margin: 3em 0;
+        }
+
+        &__button {
+            margin: 1em;
+            display: block;
+
+            > svg {
+                font-size: 2em;
+                width: 8em;
+                height: 4em;
+            }
+        }
+
+        @media all and (max-width: queries.get(mobile)) {
+            font-size: 1.9vw;
+
+            &__header {
+                font-size: 1.5vw;
+            }
+        }
+
+        @content;
+    }
+}
